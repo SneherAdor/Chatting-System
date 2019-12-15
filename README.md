@@ -1,7 +1,7 @@
 
-# About QbLogin
+# About Chatting System
 
-QbLogin system is for user login, registration, roles, permission. To start any project this laravel application boosts your development lifecycle.
+
 
 ## Installation
 1. ``` composer install ```
@@ -18,6 +18,4 @@ QbLogin system is for user login, registration, roles, permission. To start any 
 - [Laravel Framework](https://laravel.com/)
 - [Admin LTE3](https://adminlte.io/themes/dev/AdminLTE/index.html)
 
-
-## License
 

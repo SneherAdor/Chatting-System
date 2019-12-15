@@ -27,7 +27,7 @@ setInterval(function()
     $.get("http://localhost/qblogin/public/chat/"+user_id, 
     function(data, status){
       $(".chat-logs").html(data);
-      $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
+      // $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
     }
     );
   }, 1000); 

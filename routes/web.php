@@ -106,4 +106,5 @@ Route::post('registration/store', 'Admin\UserController@registrationStore');
 // Chat message
 Route::get('chat/{user_id}', 'Admin\ChatController@index');
 Route::get('chat-agent', 'Admin\ChatController@agent');
+Route::get('chat-box', 'Admin\ChatController@chatBox');
 Route::post('chat-send', 'Admin\ChatController@send');

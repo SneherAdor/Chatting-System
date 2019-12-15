@@ -1,4 +1,4 @@
-
+sessionStorage.removeItem('user_id');
 //Generete random number using date and random number
 function randomNumber(){
   function getRandomInt(min, max) {
@@ -12,41 +12,54 @@ var seconds = Math.floor(seconds);
 return randomnumber = seconds+"_"+getRandomInt(5000,500000);
 }
 
-// Create Session if session is equal to NULL
-
-if (sessionStorage.getItem("user_id") == null) {
-    var user_id = sessionStorage.setItem("user_id", "user_"+randomNumber());
-  }
-
-// get session value into user_id
-var user_id = sessionStorage.getItem("user_id");
+  // $(".user_id").click(function() {  
+  //   $(".chat-logs").html('');
+  // })
 
 $(function() {
-setInterval(function() 
-  {
-    $.get("http://localhost/qblogin/public/chat/"+user_id, 
-    function(data, status){
-      $(".chat-logs").html(data);
-      // $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
-    }
-    );
-  }, 1000); 
+
+   var user_id = '';
+
+    $(".user_id").on("click", "a", function(e) {
+      e.preventDefault();
+      clearInterval(messageFetch);
+      $(".chat-box").hide('scale');  
+      $("#chat-circle").toggle('scale');
+      $(".chat-box").show('scale');
+      user_id = $(this).text();
+      $(".chat-logs").html('');
+      var messageFetch = setInterval(function() 
+        {
+          $.get("http://localhost/qblogin/public/chat/"+user_id, 
+          function(data, status){
+            $(".chat-logs").html(data);
+            $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
+        
+          }
+          );
+        }, 500);
+  });
 
   var INDEX = 0; 
   $("#chat-submit").click(function(e) {
     e.preventDefault();
     var msg = $("#chat-input").val();
     var type = $("#chat-type").val();
+    var agent_id = $("#agent_id").val();
     $.ajax({
 
         method: "POST",
         url:"http://localhost/qblogin/public/chat-send",
         dataType: "json",
         data: {
-            'user_id': sessionStorage.getItem("user_id"),
-            'agent_id': "1",
+            'user_id': user_id,
+            'agent_id': agent_id,
             'type': type,
             'message': msg
+        },
+        success:
+        function(){
+          $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);
         }
     }) 
     if(msg.trim() == ''){
@@ -86,8 +99,14 @@ setInterval(function()
   $("#chat-circle").click(function() {    
     $("#chat-circle").toggle('scale');
     $(".chat-box").toggle('scale');
-  })
-  
+  }) 
+
+  // $(".user_id").click(function() {  
+  //   $(".chat-box").hide('scale');  
+  //   $("#chat-circle").toggle('scale');
+  //   $(".chat-box").show('scale');
+  // })
+
   $(".chat-box-toggle").click(function() {
     $("#chat-circle").toggle('scale');
     $(".chat-box").toggle('scale');

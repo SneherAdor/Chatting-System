@@ -30,6 +30,24 @@ class ChatController extends Controller
 		return view('admin.chats.agent')->with('chats', $chats);
     }
 
+    public function chatBox()
+    {
+        $chatUsers = Chat::orderBy('created_at','asc')->get();
+
+        //Seprate user_id from all data and put in users[]
+        $users = array();
+        foreach($chatUsers as $chatUser) {
+         $users[] = $chatUser->user_id;
+        }
+
+        //Remove duplicate user_id
+        $users = array_unique($users);
+
+        $chats = Chat::orderBy('created_at','desc')->paginate(10);
+
+        return view('admin.chats.chatbox', compact('chats', 'users'));
+    }
+
     public function send(Request $request)
     {
 

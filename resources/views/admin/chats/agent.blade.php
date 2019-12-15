@@ -14,42 +14,7 @@
 @section('content')
 <!-- Content Header (Page header) -->
 <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Chat List</h3>
-                        <hr style="border:1px solid #f4f4f4; margin:12px 0 !important">
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Chat List</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><b><a href="#">user_654646</a></b></td>
-                                </tr>
-                                <tr>
-                                    <td><b><a href="#">user_654646</a></b></td>
-                                </tr>
-                                <tr>
-                                    <td><b><a href="#">user_654646</a></b></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.content -->
+ 
 
               
 <div id="chat-circle" class="btn btn-raised">
